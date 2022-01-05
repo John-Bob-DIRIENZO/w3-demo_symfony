@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>{{ question.name }}</h1>
+        <p><small>Asked : {{ question.askedAt|ago }}</small></p>
+        <p>{{ question.question }}</p>
+    </div>
+
+
+{% endblock %}

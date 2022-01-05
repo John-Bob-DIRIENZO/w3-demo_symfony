@@ -29,7 +29,7 @@ class FrancisController extends AbstractController
 
         dump($isDebug);
 
-        $title = $helper->parse("Ma **pizza** est ``froide``");
+        $title = "Ma **pizza** est ``froide``";
 
         $retour = $twig->render("Frontend/home.html.twig", ['reponses' => $reponses, 'titre' => $title]);
 

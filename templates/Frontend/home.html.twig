@@ -6,7 +6,7 @@
 
 {% block body %}
 
-     <p>{{ titre|raw }}</p>
+     <p>{{ titre|markown_cached }}</p>
 
         <a href="{{ path('app_francis_homepage') }}">Home</a>
         <a href="{{ path('app_showone', { ma_wildcard: 'francis', autre_truc: 'huster' }) }}">Show</a>

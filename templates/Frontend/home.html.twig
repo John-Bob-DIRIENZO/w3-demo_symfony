@@ -1,28 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-        Mes couilles
+    Home page
 {% endblock %}
 
 {% block body %}
 
-     <p>{{ titre|markown_cached }}</p>
+    <div class="container">
+        <h1 class="text-center">Liste des questions ({{ questions|length }}) </h1>
+        {% for question in questions %}
+            <div class="p-5 bg-light mb-3">
+                <h2>{{ question.name }}</h2>
+                <p><small>asked at : {{ question.askedAt|ago }}</small></p>
 
-        <a href="{{ path('app_francis_homepage') }}">Home</a>
-        <a href="{{ path('app_showone', { ma_wildcard: 'francis', autre_truc: 'huster' }) }}">Show</a>
+                <button type="button" class="btn btn-secondary position-relative mb-3">
+                    Réponses
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ question.answers|length }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button><br/>
 
+                <a href="{{ path('app_showone', {slug: question.slug}) }}" class="btn btn-primary">Vers la question</a>
+            </div>
+        {% endfor %}
+    </div>
 
-<h1>Il y a : {{ reponses|length }} réponses</h1>
-
-<ul>
-    {% for reponse in reponses %}
-        <li>{{ reponse }}</li>
-    {% endfor %}
-</ul>
 {% endblock %}
 
 
 {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="/css/{{ asset('css/style.css') }}">
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/{{ asset('css/style.css') }}">
 {% endblock %}

@@ -5,7 +5,27 @@
     <div class="container">
         <h1>{{ question.name }}</h1>
         <p><small>Asked : {{ question.askedAt|ago }}</small></p>
+
+        <form action="{{ path('app_question_vote', { slug: question.slug }) }}" method="post">
+            <button class="btn btn-success btn-sm" name="vote" value="up">Vote up</button>
+            <button class="btn btn-warning btn-sm" name="vote" value="down">Vote down</button>
+            <span class="badge rounded-pill bg-dark">{{ question.vote }}</span>
+        </form>
+
+        <a href="{{ path('app_question_delete', { id: question.id }) }}" class="btn btn-danger my-5">Delete...</a>
+
         <p>{{ question.question }}</p>
+
+        <div>
+            <h3>Il y a {{ question.answers|length }} réponses</h3>
+            <ul>
+                {% for answer in question.approvedAnswers %}
+                    <li>{{ answer.content }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
     </div>
 
 
